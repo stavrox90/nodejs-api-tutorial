@@ -1,15 +1,18 @@
 const mysql = require('mysql');
+require('dotenv').config()
+
 const connection = mysql.createConnection({
-	host:'localhost',
-	user:'root',
-	password:'',
-	database:'node_api'
+	host: process.env.DB_HOST || 'localhost',
+	user: process.env.DB_USER || 'root',
+	password: process.env.DB_PASS || '',
+	database: process.env.DB_TYPE || 'node_api'
 });
-connection.connect((error) => {
+
+connection.connect((req, res, error) => {
 	if(!!error) {
 		console.log(error);
 	} else {
-		console.log('Connected..!');
+		console.log('Database connection established!');
 	}
 });
 
