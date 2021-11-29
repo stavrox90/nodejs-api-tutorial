@@ -13,23 +13,23 @@ router.post('/', (req, res, next) => {
     });
 });
 
-router.get('/:index', (req, res, next) => {
-    const id = req.params.index;
-    res.status(200).json({
-        message: `You passed an ID : ${id}`
-    });
-});
+// router.get('/:index', (req, res, next) => {
+//     const id = req.params.index;
+//     res.status(200).json({
+//         message: `You passed an ID : ${id}`
+//     });
+// });
 
-router.patch('/:index', (req, res, next) => {
-    res.status(200).json({
-        message: 'Index has been updated'
-    });
-});
+// router.patch('/:index', (req, res, next) => {
+//     res.status(200).json({
+//         message: 'Index has been updated'
+//     });
+// });
 
-router.delete('/:index', (req, res, next) => {
-    res.status(200).json({
-        message: 'Index has been deleted'
-    });
-});
+// router.delete('/:index', (req, res, next) => {
+//     res.status(200).json({
+//         message: 'Index has been deleted'
+//     });
+// });
 
 module.exports = router;
