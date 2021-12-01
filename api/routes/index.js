@@ -7,12 +7,6 @@ router.get('/', (req, res, next) => {
     });
 });
 
-router.post('/', (req, res, next) => {
-    res.status(200).json({
-        message: 'Handling POST request to /index'
-    });
-});
-
 // router.get('/:index', (req, res, next) => {
 //     const id = req.params.index;
 //     res.status(200).json({

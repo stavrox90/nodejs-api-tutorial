@@ -1,34 +1,25 @@
-const express = require('express');
-// const DB = require('../../services/db')
-const router = express.Router();
-
-const knexConfig = require('../../knexfile');
-const knex = require('knex')(knexConfig[process.env.ENVIRONMENT])
-
+const router = require('express').Router()
+const knex = require('../../database/knexDB')
 const books = knex('books')
 
-router.get('/', (req, res, next) => {
-    books.then(data => {
-        res.status(200).json({
-            message: 'Handling GET request to /books',
-            data: data
-        });
-    })
-        .catch(err => {
-            res.status(500).json({
-                message: 'Handling GET request to /books',
-                data: []
-            });
-        })
-    // res.status(200).json({
-    //     message: 'Handling GET request to /books'
-    // });
-});
+function successHandler(code, response, result) {
+    response.status(code).json({
+        message: 'Handling GET request to /books',
+        data: result
+    });
+}
 
-router.post('/', (req, res, next) => {
-    // res.status(200).json({
-    //     message: 'Handling POST request to /books'
-    // });
+function errorHandler(code, response, error) {
+    response.status(code).json({
+        message: 'Error handling GET request to /books',
+        data: []
+    });
+}
+
+router.get('/', async (req, res, next) => {
+    await books
+    .then(data => successHandler(200, res, data))
+    .catch(err => errorHandler(500, res, err))
 });
 
 router.get('/:bookId', (req, res, next) => {

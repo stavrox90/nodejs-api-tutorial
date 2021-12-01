@@ -1,7 +1,11 @@
+// reading .env props
+require('dotenv').config({ path: require('path').join(__dirname, '.env') })
+
+// initialize app
 const express = require('express');
+const urlEncoded = express.urlencoded({ extended: false })
+const json = express.json()
 const app = express();
-const path = require('path')
-require('dotenv').config({ path: path.join(__dirname, '.env') })
 
 // import routes
 const index = require('./api/routes/index')
@@ -11,9 +15,14 @@ const bookRoutes = require('./api/routes/books');
 const taskRoutes = require('./api/routes/tasks');
 
 // app settings
-app.use(express.urlencoded({ extended: false })).use(express.json())
+app.use(urlEncoded).use(json)
 app.set('port', +process.env.PORT ?? 5000)
 
+const handler = require('./helpers/responseHandler')
+
+handler.getHello()
+
+// use routes
 app.use('/', index);
 app.use('/products', productRoutes);
 app.use('/orders', orderRoutes);
