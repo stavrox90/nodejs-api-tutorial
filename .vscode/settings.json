@@ -1,0 +1,11 @@
+{
+    "search.exclude": {
+        ".vscode": true,
+        ".git": true,
+        "node_modules": false
+    },
+    "files.exclude": {
+        "node_modules": true
+    },
+    "task.allowAutomaticTasks": "off"
+}
